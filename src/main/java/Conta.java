@@ -1,6 +1,5 @@
 import lombok.Getter;
 
-import java.sql.SQLOutput;
 
 @Getter
 public abstract class Conta implements Iconta{
@@ -10,13 +9,13 @@ public abstract class Conta implements Iconta{
     protected int agencia;
     protected double saldo;
     protected Cliente cliente;
-    protected double ultimaTransacao;
+    protected double[] ultimasTransacoes = new double[5];
 
     @Override
     public void sacar(double valor){
-        if(this.saldo > valor){
+        if(this.saldo >= valor){
             this.saldo = this.saldo - valor;
-            this.ultimaTransacao = -valor;
+            ultimasTransacoes(-valor);
         }
         else{
             System.out.println("Valor invalido!");
@@ -26,7 +25,7 @@ public abstract class Conta implements Iconta{
     public void depositar(double valor){
         if(valor > 0){
             this.saldo = this.saldo + valor;
-            this.ultimaTransacao = valor;
+            ultimasTransacoes(valor);
         }
         else{
             System.out.println("Valor invalido!");
@@ -36,6 +35,7 @@ public abstract class Conta implements Iconta{
     public void tranferir(Conta contaDestino, double valor){
         this.sacar(valor);
         contaDestino.depositar(valor);
+        ultimasTransacoes(-valor);
     }
 
     protected void imprimirInfosComuns(){
@@ -43,7 +43,33 @@ public abstract class Conta implements Iconta{
         System.out.println("Agencia: "+getAgencia());
         System.out.println("Conta: "+getNumConta());
         System.out.printf("Saldo: %.2f \n", getSaldo());
+
+    }
+    public void ultimasTransacoes(double valor){
+        for(int i = 4; i > 0; i--) {
+            ultimasTransacoes[i] = ultimasTransacoes[i-1];
+        }
+        ultimasTransacoes[0] = valor;
+    }
+    public void imprimirTransacoes(){
         System.out.println("======== Ultima Transação ========");
-        System.out.println("R$ ------------------------ "+this.ultimaTransacao);
+        for (int i = 0; i < ultimasTransacoes.length; i++) {
+            //if(ultimasTransacoes[i] < 0){
+            //    ultimasTransacoes[i] = (+ultimasTransacoes[i]);
+           // }
+            int count = String.valueOf(ultimasTransacoes[i]).length();
+            if(ultimasTransacoes[i] % 10 != 0 && ultimasTransacoes[i] > 0){
+                if(ultimasTransacoes[i] - (ultimasTransacoes[i] % 10) > 0) {
+                    count--;
+                }
+            }
+            System.out.print("R$ ");
+            for (int j = 0; j < 30 - (count+1); j++) {
+                System.out.print("-");
+            }
+            System.out.printf(" %.2f\n", ultimasTransacoes[i]);
+
+
+        }
     }
 }

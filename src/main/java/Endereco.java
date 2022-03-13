@@ -20,7 +20,7 @@ public class Endereco {
         this.cep =  cep;
     }
 
-    public enum TipoEndereco{
+    public static enum TipoEndereco{
         RESIDENCIAL,
         COMERCIAL
     }
@@ -31,6 +31,5 @@ public class Endereco {
         System.out.println("Numero: "+getNumero());
         System.out.println("Complemento: "+getComplemento());
         System.out.println("Cep: "+getCep());
-
     }
 }

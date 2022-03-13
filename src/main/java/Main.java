@@ -8,7 +8,7 @@ public class Main{
                                         "57082168"
                                         );
         Cliente pedro = new Cliente( "Pedro Henrique",
-                                    "12606810414",
+                                    "12606810414111",
                                     "07/06/2000",
                                     "pedrohma07@gmail.com",
                                     "(82) 98191-7864",
@@ -35,6 +35,12 @@ public class Main{
         System.out.println("------------------------------");
         cc.depositar(2500);
         cc.sacar(520);
+        cc.depositar(190);
+        cc.sacar(1);
+        cc.sacar(10);
+        cc.sacar(100);
+        cc.depositar(250.55);
         cc.imprimirExtrato();
+        cc.imprimirTransacoes();
     }
 }

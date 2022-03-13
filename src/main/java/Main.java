@@ -1,46 +1,19 @@
+import java.util.Scanner;
+
 public class Main{
     public static void main(String[] args){
-        Endereco edPedro = new Endereco(Endereco.TipoEndereco.RESIDENCIAL,
-                                        "135",
-                                        "QD 58",
-                                        "Santa Lúcia",
-                                        "Alagoas",
-                                        "57082168"
-                                        );
-        Cliente pedro = new Cliente( "Pedro Henrique",
-                                    "12606810414111",
-                                    "07/06/2000",
-                                    "pedrohma07@gmail.com",
-                                    "(82) 98191-7864",
-                                    edPedro);
+        boolean fim = false;
+        Scanner scString = new Scanner(System.in);
+        Scanner scInt = new Scanner(System.in);
 
-        Conta cc = new ContaCorrente(pedro);
-        Conta cp = new ContaPoupanca(pedro);
+        Endereco edCliente = new Endereco();
+        Cliente cliente = new Cliente(edCliente);
+        cliente.cadastraCliente();
+        edCliente.cadastrarEndereco();
+        Conta cc = new ContaCorrente(cliente);
 
+        do{
 
-/*
-        conta.depositar(1000);
-        System.out.println(conta.getSaldo());
-        conta.sacar(50);
-        System.out.println(conta.getSaldo());
-        conta.tranferir(conta2, 500);
-        System.out.println(conta.getSaldo());
-        System.out.println("-------");
-        System.out.println(conta2.getSaldo());
-        conta2.sacar(600);
-        System.out.println(conta2.getSaldo());
-        conta.imprimirExtrato();
-        conta2.imprimirExtrato();*/
-        pedro.imprimirDadosCliente(pedro, edPedro);
-        System.out.println("------------------------------");
-        cc.depositar(2500);
-        cc.sacar(520);
-        cc.depositar(190);
-        cc.sacar(1);
-        cc.sacar(10);
-        cc.sacar(100);
-        cc.depositar(250.55);
-        cc.imprimirExtrato();
-        cc.imprimirTransacoes();
+        }while(fim == true);
     }
 }

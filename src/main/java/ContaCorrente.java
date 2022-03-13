@@ -7,8 +7,8 @@ public class ContaCorrente extends Conta{
         super.cliente = cliente;
     }
     @Override
-    public void imprimirExtrato() {
-        System.out.println( "=== EXTRATO DA CONTA CORRENTE ===");
+    public void imprimirDadosConta() {
+        System.out.println( "=== DADOS DA CONTA CORRENTE ===");
         super.imprimirInfosComuns();
     }
 

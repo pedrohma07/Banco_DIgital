@@ -7,8 +7,8 @@ public class ContaPoupanca extends Conta{
         super.cliente = cliente;
     }
 
-    public void imprimirExtrato() {
-        System.out.println("=== EXTRATO DA CONTA POUPANÇA ===");
+    public void imprimirDadosConta() {
+        System.out.println("=== DADOS DA CONTA POUPANÇA ===");
         super.imprimirInfosComuns();
     }
 }

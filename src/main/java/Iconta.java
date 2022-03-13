@@ -3,5 +3,6 @@ public interface Iconta {
     void depositar(double valor);
     void tranferir(Conta contaDestino, double valor);
 
-    void imprimirExtrato();
+    void imprimirDadosConta();
+    void extratoConta();
 }

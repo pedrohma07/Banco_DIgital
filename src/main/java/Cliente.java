@@ -3,6 +3,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Getter
 public class Cliente {
@@ -28,19 +29,8 @@ public class Cliente {
     private List<Endereco> enderecos;
     
 
-    public Cliente(String identificacao, String documento, String dataNascimento, String email, String telefone, Endereco enderecos){
-        this.identificacao = identificacao;
-        this.documento = documento;
-        this.dataNascimento = dataNascimento;
-        this.email = email;
-        this.telefone = telefone;
+    public Cliente(Endereco enderecos){
         addEnderecos(enderecos);
-        if(documento.length() == 11){
-            this.tipoDocumento = TipoDocumento.CPF;
-        }
-        else if(documento.length() == 14){
-            this.tipoDocumento = TipoDocumento.CNPJ;
-        }
     }
     public void addEnderecos(Endereco enderecos){
         getEnderecos().add(enderecos);
@@ -52,12 +42,35 @@ public class Cliente {
         }
         return enderecos;
     }
-    public void imprimirDadosCliente(Cliente cliente, Endereco endereco){
+    public void imprimirDadosCliente(Endereco endereco){
         System.out.println("Nome: "+getIdentificacao());
         System.out.println("Documento: ("+getTipoDocumento()+") "+getDocumento());
         System.out.println("Data de nascimento: "+getDataNascimento());
         System.out.println("E-mail: "+getEmail());
         System.out.println("Telefone: "+getTelefone());
         endereco.imprimirDadosEndereco(endereco);
+    }
+    public void verificaDocumento(String documento){
+        if(documento.length() == 11){
+            this.tipoDocumento = TipoDocumento.CPF;
+        }
+        else if(documento.length() == 14){
+            this.tipoDocumento = TipoDocumento.CNPJ;
+        }
+    }
+    public void cadastraCliente(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Nome completo: ");
+        this.identificacao = sc.nextLine();
+        System.out.print("Documento (CPF / CNPJ): ");
+        this.documento = sc.nextLine();
+        System.out.print("Data de nascimento: ");
+        this.dataNascimento = sc.nextLine();
+        System.out.print("E-mail: ");
+        this.email = sc.nextLine();
+        System.out.print("Telefone: ");
+        this.telefone = sc.nextLine();
+        verificaDocumento(this.documento);
     }
 }

@@ -51,25 +51,19 @@ public abstract class Conta implements Iconta{
         }
         ultimasTransacoes[0] = valor;
     }
-    public void imprimirTransacoes(){
+    public void extratoConta(){
         System.out.println("======== Ultima Transação ========");
         for (int i = 0; i < ultimasTransacoes.length; i++) {
-            //if(ultimasTransacoes[i] < 0){
-            //    ultimasTransacoes[i] = (+ultimasTransacoes[i]);
-           // }
             int count = String.valueOf(ultimasTransacoes[i]).length();
-            if(ultimasTransacoes[i] % 10 != 0 && ultimasTransacoes[i] > 0){
-                if(ultimasTransacoes[i] - (ultimasTransacoes[i] % 10) > 0) {
-                    count--;
-                }
+            if((String.valueOf(ultimasTransacoes[i]).charAt(count-2) != '0')  || String.valueOf(ultimasTransacoes[i]).charAt(count-1) != '0'){
+                if(String.valueOf(ultimasTransacoes[i]).charAt(count-2) != '.')
+                    count-=1;
             }
             System.out.print("R$ ");
             for (int j = 0; j < 30 - (count+1); j++) {
                 System.out.print("-");
             }
             System.out.printf(" %.2f\n", ultimasTransacoes[i]);
-
-
         }
     }
 }

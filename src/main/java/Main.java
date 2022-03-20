@@ -11,9 +11,16 @@ public class Main{
         cliente.cadastraCliente();
         edCliente.cadastrarEndereco();
         Conta cc = new ContaCorrente(cliente);
+        Conta cp = new ContaPoupanca(cliente);
 
-        do{
+        cc.depositar(2000);
+        cc.tranferir(cp,500);
+        System.out.println(cc.getSaldo());
+        cc.extratoConta();
 
-        }while(fim == true);
+        System.out.println("----------");
+
+        cp.extratoConta();
+
     }
 }

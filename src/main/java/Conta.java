@@ -34,8 +34,9 @@ public abstract class Conta implements Iconta{
     @Override
     public void tranferir(Conta contaDestino, double valor){
         this.sacar(valor);
-        contaDestino.depositar(valor);
-        ultimasTransacoes(-valor);
+        if(valor <= this.saldo) {
+            contaDestino.depositar(valor);
+        }
     }
 
     protected void imprimirInfosComuns(){
